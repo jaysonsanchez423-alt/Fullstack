@@ -1,0 +1,38 @@
+.search-results {
+  min-height: 100vh;
+  background: var(--background-color);
+}
+
+.search-content {
+  display: flex;
+  padding-top: 56px;
+}
+
+.search-main {
+  flex: 1;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-header {
+  margin-bottom: 24px;
+}
+
+.search-header h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.search-header p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .search-main {
+    padding: 16px;
+  }
+}
