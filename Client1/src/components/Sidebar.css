@@ -91,6 +91,13 @@
   letter-spacing: 0.5px;
 }
 
+.sidebar-empty {
+  padding: 0 24px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 40px;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 240px;

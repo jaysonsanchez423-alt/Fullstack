@@ -1,11 +1,8 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import './Navbar.css';
 
 const Navbar = ({ onMenuClick }) => {
-  const navigate = useNavigate();
-
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -13,8 +10,8 @@ const Navbar = ({ onMenuClick }) => {
           <span className="hamburger"></span>
         </button>
         <Link to="/" className="logo">
-          <img src="https://www.youtube.com/s/desktop/1b8a6c69/img/favicon_144x144.png" alt="YouTube" />
-          <span>YouTube</span>
+          
+          <span>NewTube</span>
         </Link>
       </div>
 
@@ -33,9 +30,9 @@ const Navbar = ({ onMenuClick }) => {
             <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V8H13V6H11M11,10V18H13V10H11Z" />
           </svg>
         </button>
-        <div className="user-avatar">
+        <Link to="/profile" className="user-avatar">
           <img src="https://picsum.photos/32/32?random=1" alt="User" />
-        </div>
+        </Link>
       </div>
     </nav>
   );

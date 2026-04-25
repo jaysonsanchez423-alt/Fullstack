@@ -1,7 +1,9 @@
 .video-card {
   width: 100%;
+  max-width: 100%;
   margin-bottom: 16px;
   cursor: pointer;
+  text-align: left;
 }
 
 .video-thumbnail-link {
@@ -64,6 +66,7 @@
 .video-details {
   flex: 1;
   min-width: 0;
+  text-align: left;
 }
 
 .video-title {

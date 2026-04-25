@@ -1,8 +1,13 @@
 .video-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  justify-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
   padding: 0;
+  align-items: start;
 }
 
 @media (max-width: 640px) {
@@ -14,6 +19,6 @@
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .video-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 }

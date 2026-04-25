@@ -35,18 +35,7 @@ const Sidebar = ({ isOpen }) => {
 
         <div className="sidebar-section">
           <h3 className="sidebar-title">Subscriptions</h3>
-          <Link to="/channel/1" className="sidebar-item">
-            <img src="https://picsum.photos/24/24?random=20" alt="Channel" className="channel-avatar" />
-            <span className="sidebar-label">Tech Channel</span>
-          </Link>
-          <Link to="/channel/2" className="sidebar-item">
-            <img src="https://picsum.photos/24/24?random=21" alt="Channel" className="channel-avatar" />
-            <span className="sidebar-label">Cooking Master</span>
-          </Link>
-          <Link to="/channel/3" className="sidebar-item">
-            <img src="https://picsum.photos/24/24?random=22" alt="Channel" className="channel-avatar" />
-            <span className="sidebar-label">Music Vibes</span>
-          </Link>
+          <div className="sidebar-empty">No users subscribed</div>
         </div>
 
         <hr className="sidebar-divider" />
