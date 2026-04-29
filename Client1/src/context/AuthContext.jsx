@@ -24,11 +24,18 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
+  const updateUser = (updates) => {
+    setUser((prev) => {
+      return { ...prev, ...updates };
+    });
+  };
+
   const value = {
     user,
     isAuthenticated,
     login,
-    logout
+    logout,
+    updateUser
   };
 
   return (
