@@ -1,15 +1,30 @@
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import VideoPlayer from '../components/VideoPlayer';
 import VideoGrid from '../components/VideoGrid';
 import { mockVideos } from '../utils/mockData';
+import { loadUploadedVideos } from '../utils/videoStorage';
 import './Watch.css';
 
 const Watch = () => {
   const { id } = useParams();
-  const video = mockVideos.find(v => v.id === parseInt(id));
-  const relatedVideos = mockVideos.filter(v => v.id !== parseInt(id)).slice(0, 8);
+  const [subscribed, setSubscribed] = useState(false);
+  const [video, setVideo] = useState(null);
+  const [relatedVideos, setRelatedVideos] = useState([]);
+
+  useEffect(() => {
+    const uploaded = loadUploadedVideos();
+    const videos = [...mockVideos, ...uploaded];
+    const selected = videos.find(v => v.id === parseInt(id));
+    setVideo(selected);
+    setRelatedVideos(videos.filter(v => v.id !== parseInt(id)).slice(0, 8));
+  }, [id]);
+
+  const handleSubscribe = () => {
+    setSubscribed(!subscribed);
+  };
 
   if (!video) {
     return <div>Video not found</div>;
@@ -35,7 +50,9 @@ const Watch = () => {
                   <h3 className="channel-name">{video.channel}</h3>
                   <span className="subscriber-count">1.2M subscribers</span>
                 </div>
-                <button className="subscribe-btn">Subscribe</button>
+                <button className={`subscribe-btn ${subscribed ? 'subscribed' : ''}`} onClick={handleSubscribe}>
+                  {subscribed ? 'Subscribed' : 'Subscribe'}
+                </button>
               </div>
               <div className="video-description">
                 <p>{video.description}</p>

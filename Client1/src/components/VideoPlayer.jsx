@@ -1,12 +1,46 @@
 import { useState } from 'react';
 import './VideoPlayer.css';
 
+const getYouTubeEmbed = (url) => {
+  const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]+)/);
+  return ytMatch ? `https://www.youtube.com/embed/${ytMatch[1]}` : null;
+};
+
+const isVideoFile = (url) => /\.(mp4|webm|ogg)(\?.*)?$/i.test(url);
+
 const VideoPlayer = ({ video }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const embedUrl = video.videoUrl ? getYouTubeEmbed(video.videoUrl) : null;
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
+
+  if (video.videoUrl) {
+    return (
+      <div className="video-player">
+        <div className="video-container video-embed-container">
+          {embedUrl ? (
+            <iframe
+              src={embedUrl}
+              title={video.title}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          ) : isVideoFile(video.videoUrl) ? (
+            <video controls src={video.videoUrl} className="video-iframe" />
+          ) : (
+            <div className="external-video-link">
+              <a href={video.videoUrl} target="_blank" rel="noreferrer">
+                Open video link
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="video-player">

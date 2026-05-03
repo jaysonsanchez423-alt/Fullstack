@@ -53,6 +53,27 @@
   margin-left: 2px;
 }
 
+.video-iframe,
+.video-embed-container iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.external-video-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+}
+
+.external-video-link a {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .video-controls {
   background: #000;
   padding: 8px 16px;
