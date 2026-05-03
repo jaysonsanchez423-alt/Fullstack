@@ -1,0 +1,46 @@
+const baseURL = import.meta.env.VITE_API_BASE_URL || '/api';
+const localFallback = 'http://localhost:4000/api';
+
+const makeRequest = async (url, options) => {
+  const response = await fetch(`${baseURL}${url}`, options);
+  if (!response.ok && response.status === 404 && baseURL === '/api') {
+    return fetch(`${localFallback}${url}`, options);
+  }
+  return response;
+};
+
+const api = {
+  get: async (url, options = {}) => {
+    const params = options.params
+      ? `?${new URLSearchParams(options.params).toString()}`
+      : '';
+    const response = await makeRequest(`${url}${params}`);
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      throw new Error(errorData || response.statusText);
+    }
+
+    return { data: await response.json() };
+  },
+
+  post: async (url, data, options = {}) => {
+    const response = await makeRequest(`${url}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(options.headers || {}),
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      throw new Error(errorData?.error || response.statusText);
+    }
+
+    return { data: await response.json() };
+  },
+};
+
+export default api;

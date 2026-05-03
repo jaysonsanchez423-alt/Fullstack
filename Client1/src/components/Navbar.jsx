@@ -11,7 +11,7 @@ const Navbar = ({ onMenuClick }) => {
         </button>
         <Link to="/" className="logo">
           
-          <span>NewTube</span>
+          <span>ThunderTUBE</span>
         </Link>
       </div>
 
@@ -20,6 +20,11 @@ const Navbar = ({ onMenuClick }) => {
       </div>
 
       <div className="navbar-right">
+        <Link to="/upload" className="icon-btn upload-btn" title="Upload">
+          <svg viewBox="0 0 24 24">
+            <path d="M5,20H19A1,1 0 0,0 20,19V13H18V18H6V13H4V19A1,1 0 0,0 5,20M12,2L7,7H10V13H14V7H17L12,2Z" />
+          </svg>
+        </Link>
         <button className="icon-btn">
           <svg viewBox="0 0 24 24">
             <path d="M14,10H2V12H14V10M14,6H2V8H14V6M2,16H10V14H2V16M21.5,11.5L23,13L16,20L11.5,15.5L13,14L16,17L21.5,11.5Z" />

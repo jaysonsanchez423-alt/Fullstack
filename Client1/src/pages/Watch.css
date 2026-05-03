@@ -90,6 +90,15 @@
   background: #cc0000;
 }
 
+.subscribe-btn.subscribed {
+  background: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.subscribe-btn.subscribed:hover {
+  background: #666;
+}
+
 .video-description {
   margin-top: 16px;
   padding-top: 16px;

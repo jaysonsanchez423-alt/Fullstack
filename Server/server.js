@@ -77,6 +77,31 @@ app.post('/api/comments', (req, res) => {
   res.status(201).json(newComment);
 });
 
+app.post('/api/videos', (req, res) => {
+  const { title, description, category, channel, channelAvatar, videoUrl } = req.body;
+
+  if (!title || !description || !category || !channel || !videoUrl) {
+    return res.status(400).json({ error: 'title, description, category, channel, and videoUrl are required' });
+  }
+
+  const newVideo = {
+    id: videos.length + 1,
+    title,
+    description,
+    category,
+    channel,
+    channelAvatar: channelAvatar || 'https://picsum.photos/40/40?random=99',
+    thumbnail: 'https://picsum.photos/320/180?random=' + (videos.length + 1),
+    videoUrl,
+    views: '0',
+    timestamp: 'Just uploaded',
+    duration: '0:00'
+  };
+
+  videos.push(newVideo);
+  res.status(201).json(newVideo);
+});
+
 app.listen(port, () => {
   console.log(`Backend server listening on http://localhost:${port}`);
 });

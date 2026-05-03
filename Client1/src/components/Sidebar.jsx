@@ -10,6 +10,7 @@ const Sidebar = ({ isOpen }) => {
     { path: '/subscriptions', icon: '📺', label: 'Subscriptions' },
     { path: '/library', icon: '📚', label: 'Library' },
     { path: '/history', icon: '🕒', label: 'History' },
+    { path: '/upload', icon: '⬆️', label: 'Upload' },
     { path: '/your-videos', icon: '🎥', label: 'Your videos' },
     { path: '/watch-later', icon: '⏰', label: 'Watch later' },
     { path: '/liked-videos', icon: '👍', label: 'Liked videos' }

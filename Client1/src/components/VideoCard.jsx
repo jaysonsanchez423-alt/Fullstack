@@ -1,9 +1,27 @@
 import { Link } from 'react-router-dom';
 import './VideoCard.css';
 
-const VideoCard = ({ video }) => {
+const formatViews = (views) => {
+  const count = parseInt(views) || 0;
+  if (count >= 1000000) return (count / 1000000).toFixed(1) + 'M';
+  if (count >= 1000) return (count / 1000).toFixed(1) + 'K';
+  return count.toString();
+};
+
+const VideoCard = ({ video, onDelete, isSelected, onSelect, isSelectionMode }) => {
+  const isUploaded = Boolean(video.videoUrl);
+
   return (
-    <div className="video-card">
+    <div className={`video-card ${isSelected ? 'selected' : ''}`}>
+      {isSelectionMode && isUploaded && (
+        <div className="video-checkbox">
+          <input
+            type="checkbox"
+            checked={isSelected}
+            onChange={(e) => onSelect(video.id, e.target.checked)}
+          />
+        </div>
+      )}
       <Link to={`/watch/${video.id}`} className="video-thumbnail-link">
         <div className="video-thumbnail">
           <img src={video.thumbnail} alt={video.title} />
@@ -29,6 +47,11 @@ const VideoCard = ({ video }) => {
             <span>{video.timestamp}</span>
           </div>
         </div>
+        {isUploaded && onDelete && !isSelectionMode && (
+          <button className="delete-btn" onClick={() => onDelete(video.id)}>
+            Delete
+          </button>
+        )}
       </div>
     </div>
   );
